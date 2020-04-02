@@ -14,7 +14,7 @@ class Registration extends BaseSpec {
         loginPage.createForm.displayed
 
         when: 'Regisztrálok, e-mail adress-t kell kötölteni egy nem regisztált email címmel és meg kell nyomni „create an account” funkciógombot'
-        loginPage.newEmailAddress = 'tcsaba@gmail.com'
+        loginPage.newEmailAddress = 'asd2@gmail.com'
         loginPage.createAccButton.click()
 
         then: 'Megérkezünk a regisztrációs űrlapra '
@@ -28,9 +28,10 @@ class Registration extends BaseSpec {
         registrationPage.registerButton.click()
 
 
-        then: '’Megjelenik egy hibaüzenet: „There are 5 errors”.'
+        then: 'Megjelenik egy hibaüzenet: „There are 5 errors”.'
 
         when: 'Kitöltöm a „Your address” blokkban az összes mezőt és „Register” funkciógombra kattintok.'
+        registrationPage.passwd = 'Admin'
         registrationPage.addressFirstName = 'Csaba'
         registrationPage.addressLastName = 'Tóth'
         registrationPage.addresss1 = 'Kossuth street'
