@@ -1,4 +1,4 @@
-package entity
+package hu.tigra.pti.geb.entity
 
 class User {
 
