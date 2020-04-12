@@ -1,6 +1,8 @@
 package hu.tigra.pti.geb.page
 
 import geb.Page
+import geb.module.Checkbox
+import hu.tigra.pti.geb.module.ProductRow
 
 class OrderPage extends Page {
 
@@ -16,12 +18,14 @@ class OrderPage extends Page {
         // 3. házi feladat
         // A summaryFirstRow a táblázat első sorát választja ki
         // A táblázat "tbody"-ában az első "tr"-t kell beadni a ProductRow modulba
-        summaryFirstRow(required: false) {  }
+        summaryFirstRow(required: false) { module ProductRow}
 
-        shippingAgreeTerms(required: false) {  }
+        shippingAgreeTerms(required: false) { $('input[id="cgv"]').module(Checkbox) }
 
-        paymentCheckButton(required: false) {  }
+        paymentCheckButton(required: false) { $('p[class="payment_module"]').$( 'a[class="cheque"]') }
 
-        message(required: false) {  }
+        confirmButton(required: false) { $( 'p[id="cart_navigation"]').$('button[type="submit"]')}
+
+        message(required: false) { $( 'p[class="alert alert-success"]') }
     }
 }
