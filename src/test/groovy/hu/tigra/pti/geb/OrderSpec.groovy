@@ -43,7 +43,9 @@ class OrderSpec extends BaseSpec {
         orderPage.summaryFirstRow.plusButton.click()
 
         then: 'A mennyiség 2-re változik'
-        orderPage.summaryFirstRow.quantity == 1
+        def quantity = orderPage.summaryFirstRow.quantity
+        waitFor { quantity != orderPage.summaryFirstRow.quantity}
+        orderPage.summaryFirstRow.quantity == 2
 
         when: 'Rákattintok a "Proceed to checkout" gombra'
         orderPage.nextButton.click()
