@@ -26,65 +26,70 @@ import java.util.List;
 <span class="fc bfc" id="L26" title="All 2 branches covered.">                } else if (lastOperation.equals(Operation.MULTIPLY)) {</span>
 <span class="fc" id="L27">                    result = result.doubleValue() * number.doubleValue();</span>
 <span class="fc bfc" id="L28" title="All 2 branches covered.">                } else if (lastOperation.equals(Operation.DIVIDE)) {</span>
-<span class="fc bfc" id="L29" title="All 2 branches covered.">                    if (number.doubleValue() != 0) {</span>
-<span class="fc" id="L30">                        result = result.doubleValue() / number.doubleValue();</span>
-                    } else {
-<span class="fc bfc" id="L32" title="All 2 branches covered.">                        if (result.doubleValue() &gt; 0) {</span>
-<span class="fc" id="L33">                            result = Double.POSITIVE_INFINITY;</span>
-                        } else {
-<span class="fc" id="L35">                            result = Double.NEGATIVE_INFINITY;</span>
-                        }
-                    }
-<span class="fc bfc" id="L38" title="All 2 branches covered.">                } else if (lastOperation.equals(Operation.REMAINDER)) {</span>
-<span class="fc" id="L39">                    result = result.doubleValue() % number.doubleValue();</span>
-<span class="pc bpc" id="L40" title="1 of 2 branches missed.">                } else if (lastOperation.equals(Operation.POWER)) {</span>
-<span class="fc" id="L41">                    result = Math.pow(result.doubleValue(), number.doubleValue());</span>
+<span class="fc" id="L29">                    divide(number);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">                } else if (lastOperation.equals(Operation.REMAINDER)) {</span>
+<span class="fc" id="L31">                    result = result.doubleValue() % number.doubleValue();</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">                } else if (lastOperation.equals(Operation.POWER)) {</span>
+<span class="fc" id="L33">                    result = Math.pow(result.doubleValue(), number.doubleValue());</span>
                 }
-<span class="fc" id="L43">                expression = expression + separator + lastOperation + separator + number;</span>
-<span class="fc" id="L44">                lastOperation = null;</span>
+<span class="fc" id="L35">                expression = expression + separator + lastOperation + separator + number;</span>
+<span class="fc" id="L36">                lastOperation = null;</span>
             } else {
-<span class="pc bpc" id="L46" title="1 of 2 branches missed.">                if (!expression.isEmpty()) {</span>
-<span class="nc" id="L47">                    history.add(expression + &quot; = &quot; + resultString());</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">                if (!expression.isEmpty()) {</span>
+<span class="nc" id="L39">                    history.add(expression + &quot; = &quot; + resultString());</span>
                 }
-<span class="fc" id="L49">                result = number;</span>
-<span class="fc" id="L50">                expression = &quot;&quot; + number;</span>
+<span class="fc" id="L41">                result = number;</span>
+<span class="fc" id="L42">                expression = &quot;&quot; + number;</span>
             }
         }
-<span class="fc" id="L53">        return this;</span>
+<span class="fc" id="L45">        return this;</span>
     }
+
 
     public Calculator enter(Operation operation) {
-<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        if (operation != null) {</span>
-<span class="fc bfc" id="L58" title="All 12 branches covered.">            if (operation == Operation.ADD || operation == Operation.SUBSTRACT || operation == Operation.MULTIPLY</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        if (operation != null) {</span>
+<span class="fc bfc" id="L51" title="All 12 branches covered.">            if (operation == Operation.ADD || operation == Operation.SUBSTRACT || operation == Operation.MULTIPLY</span>
                     || operation == Operation.DIVIDE || operation == Operation.REMAINDER || operation == Operation.POWER) {
-<span class="fc" id="L60">                lastOperation = operation;</span>
-<span class="fc bfc" id="L61" title="All 2 branches covered.">            } else if (operation == Operation.SQRT) {</span>
-<span class="fc" id="L62">                result = Math.sqrt(result.doubleValue());</span>
-<span class="fc" id="L63">                expression = operation + &quot;(&quot; + expression + &quot;)&quot;;</span>
-<span class="fc" id="L64">                lastOperation = null;</span>
-<span class="pc bpc" id="L65" title="1 of 2 branches missed.">            } else if (operation == Operation.CLEAR) {</span>
-<span class="fc" id="L66">                result = 0;</span>
-<span class="fc" id="L67">                expression = &quot;&quot;;</span>
-<span class="fc" id="L68">                lastOperation = null;</span>
+<span class="fc" id="L53">                lastOperation = operation;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            } else if (operation == Operation.SQRT) {</span>
+<span class="fc" id="L55">                result = Math.sqrt(result.doubleValue());</span>
+<span class="fc" id="L56">                expression = operation + &quot;(&quot; + expression + &quot;)&quot;;</span>
+<span class="fc" id="L57">                lastOperation = null;</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">            } else if (operation == Operation.CLEAR) {</span>
+<span class="fc" id="L59">                result = 0;</span>
+<span class="fc" id="L60">                expression = &quot;&quot;;</span>
+<span class="fc" id="L61">                lastOperation = null;</span>
             }
-<span class="fc" id="L70">            return this;</span>
+<span class="fc" id="L63">            return this;</span>
         }
-<span class="nc" id="L72">        return this;</span>
+<span class="nc" id="L65">        return this;</span>
     }
 
-    public String getHistory() {
-<span class="fc" id="L76">        StringBuilder sb = new StringBuilder();</span>
-<span class="pc bpc" id="L77" title="1 of 2 branches missed.">        if (history.isEmpty())</span>
-<span class="pc bpc" id="L78" title="1 of 2 branches missed.">            for (String h: history) {</span>
-<span class="nc" id="L79">                sb.append(h).append(&quot;\n&quot;);</span>
-<span class="nc" id="L80">            }</span>
+    public void divide(Number number){
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (number.doubleValue() != 0) {</span>
+<span class="fc" id="L70">            result = result.doubleValue() / number.doubleValue();</span>
+        } else {
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            if (result.doubleValue() &gt; 0) {</span>
+<span class="fc" id="L73">                result = Double.POSITIVE_INFINITY;</span>
+            } else {
+<span class="fc" id="L75">                result = Double.NEGATIVE_INFINITY;</span>
+            }
+        }
+<span class="fc" id="L78">    }</span>
 
-<span class="fc" id="L82">        sb.append(expression).append(&quot; = &quot;).append(resultString());</span>
-<span class="fc" id="L83">        return sb.toString();</span>
+    public String getHistory() {
+<span class="fc" id="L81">        StringBuilder sb = new StringBuilder();</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if (history.isEmpty())</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">            for (String h: history) {</span>
+<span class="nc" id="L84">                sb.append(h).append(&quot;\n&quot;);</span>
+<span class="nc" id="L85">            }</span>
+
+<span class="fc" id="L87">        sb.append(expression).append(&quot; = &quot;).append(resultString());</span>
+<span class="fc" id="L88">        return sb.toString();</span>
     }
 
     private String resultString() {
-<span class="pc bpc" id="L87" title="1 of 2 branches missed.">        return result.doubleValue() % 1 == 0 ? &quot;&quot; + result.intValue() : result.toString();</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">        return result.doubleValue() % 1 == 0 ? &quot;&quot; + result.intValue() : result.toString();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

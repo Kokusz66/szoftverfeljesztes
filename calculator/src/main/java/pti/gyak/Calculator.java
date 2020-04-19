@@ -26,15 +26,7 @@ public class Calculator {
                 } else if (lastOperation.equals(Operation.MULTIPLY)) {
                     result = result.doubleValue() * number.doubleValue();
                 } else if (lastOperation.equals(Operation.DIVIDE)) {
-                    if (number.doubleValue() != 0) {
-                        result = result.doubleValue() / number.doubleValue();
-                    } else {
-                        if (result.doubleValue() > 0) {
-                            result = Double.POSITIVE_INFINITY;
-                        } else {
-                            result = Double.NEGATIVE_INFINITY;
-                        }
-                    }
+                    divide(number);
                 } else if (lastOperation.equals(Operation.REMAINDER)) {
                     result = result.doubleValue() % number.doubleValue();
                 } else if (lastOperation.equals(Operation.POWER)) {
@@ -53,6 +45,7 @@ public class Calculator {
         return this;
     }
 
+
     public Calculator enter(Operation operation) {
         if (operation != null) {
             if (operation == Operation.ADD || operation == Operation.SUBSTRACT || operation == Operation.MULTIPLY
@@ -70,6 +63,18 @@ public class Calculator {
             return this;
         }
         return this;
+    }
+
+    public void divide(Number number){
+        if (number.doubleValue() != 0) {
+            result = result.doubleValue() / number.doubleValue();
+        } else {
+            if (result.doubleValue() > 0) {
+                result = Double.POSITIVE_INFINITY;
+            } else {
+                result = Double.NEGATIVE_INFINITY;
+            }
+        }
     }
 
     public String getHistory() {

@@ -28,7 +28,7 @@ public class CalculatorTest {
         assertEquals(0.0, (new Calculator()).enter(6).enter(Operation.REMAINDER).enter(3).getResult());
         assertEquals(8.0, (new Calculator()).enter(2).enter(Operation.POWER).enter(3).getResult());
     }
-    
+
     @Test
     public void testPositive(){
         assertEquals(Double.POSITIVE_INFINITY,new Calculator().enter(4).enter(Operation.DIVIDE).enter(0).getResult());
